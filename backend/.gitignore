@@ -1,0 +1,9 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+/src/generated/prisma
+
+
+
+DATABASE_URL="postgresql://postgres:72229953@localhost:5432/sujeitopizzaria?schema=public"

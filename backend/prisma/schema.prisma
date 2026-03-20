@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+provider = "postgresql"
+url      = env("DATABASE_URL")
+
+}
+
+model Usuario {
+  id         String   @id @default(uuid())
+  nome       String
+  email      String   @unique
+  senha      String
+  telefone   String?
+  tipo       TipoUsuario
+  criadoEm   DateTime @default(now())
+
+  pacientes  Paciente[]
+  historicos HistoricoTarefa[]
+}
+
+model Paciente {
+  id          String   @id @default(uuid())
+  nome        String
+  idade       Int
+  genero      String
+  observacoes String?
+
+  cuidadorId  String
+  cuidador    Usuario  @relation(fields: [cuidadorId], references: [id])
+
+  tarefas     Tarefa[]
+}
+
+model Tarefa {
+  id            String   @id @default(uuid())
+  titulo        String
+  descricao     String?
+  recorrente    Boolean
+  tipoTarefa    String
+  concluida     Boolean  @default(true)
+
+  pacienteId    String
+  paciente      Paciente @relation(fields: [pacienteId], references: [id])
+
+  medicamentos  Medicamento[]
+  historicos    HistoricoTarefa[]
+}
+
+model Medicamento {
+  id         String @id @default(uuid())
+  nomeRemedio String
+  dosagem     String
+  frequencia  String
+
+  tarefaId    String
+  tarefa      Tarefa @relation(fields: [tarefaId], references: [id])
+}
+
+model HistoricoTarefa {
+  id             String   @id @default(uuid())
+  tarefaId       String
+  tarefa         Tarefa   @relation(fields: [tarefaId], references: [id])
+
+  dataExecucao   DateTime
+  observacao     String?
+
+  usuarioId      String
+  usuario        Usuario  @relation(fields: [usuarioId], references: [id])
+}
+
+enum TipoUsuario {
+  CUIDADOR
+  PACIENTE
+}
