@@ -23,7 +23,12 @@ export class AuthUsuarioService {
     });
 
     return {
-      usuario,
+      usuario: {
+        id: usuario.id,
+        nome: usuario.nome,
+        email: usuario.email,
+        tipo: usuario.tipo,
+      },
       token,
     };
   }

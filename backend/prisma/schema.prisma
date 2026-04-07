@@ -40,7 +40,8 @@ model Tarefa {
   descricao     String?
   recorrente    Boolean
   tipoTarefa    String
-  concluida     Boolean  @default(true)
+  concluida     Boolean  @default(false)
+  data          DateTime
 
   pacienteId    String
   paciente      Paciente @relation(fields: [pacienteId], references: [id])
