@@ -6,4 +6,3 @@ node_modules
 
 
 
-DATABASE_URL="postgresql://postgres:72229953@localhost:5432/sujeitopizzaria?schema=public"
