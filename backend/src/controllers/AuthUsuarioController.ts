@@ -9,6 +9,6 @@ export class AuthUsuarioController {
 
     const result = await service.execute(email, senha);
 
-    return res.json(result);
+    return res.json({ data: result });
   }
 }

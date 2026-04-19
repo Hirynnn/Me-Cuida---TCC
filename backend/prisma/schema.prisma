@@ -19,6 +19,7 @@ model Usuario {
 
   pacientes  Paciente[]
   historicos HistoricoTarefa[]
+  notificacoes Notificacao[]
 }
 
 model Paciente {
@@ -48,6 +49,7 @@ model Tarefa {
 
   medicamentos  Medicamento[]
   historicos    HistoricoTarefa[]
+  notificacoes Notificacao[]
 }
 
 model Medicamento {
@@ -70,6 +72,19 @@ model HistoricoTarefa {
 
   usuarioId      String
   usuario        Usuario  @relation(fields: [usuarioId], references: [id])
+}
+
+
+model Notificacao {
+  id         String   @id @default(uuid())
+
+  tarefaId   String
+  tarefa     Tarefa   @relation(fields: [tarefaId], references: [id])
+
+  usuarioId  String
+  usuario    Usuario  @relation(fields: [usuarioId], references: [id])
+
+  enviadaEm  DateTime @default(now())
 }
 
 enum TipoUsuario {

@@ -9,6 +9,6 @@ export class ListPacienteController {
 
     const pacientes = await service.execute(userId);
 
-    return res.json(pacientes);
+    return res.json({ data: pacientes });
   }
 }

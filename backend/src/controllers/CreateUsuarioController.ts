@@ -8,6 +8,6 @@ export class CreateUsuarioController {
 
     const usuario = await service.execute(nome, email, senha);
 
-    return res.json(usuario);
+    return res.json({ data: usuario });
   }
 }

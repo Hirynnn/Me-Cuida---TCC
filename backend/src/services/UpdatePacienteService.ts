@@ -1,3 +1,4 @@
+import { AppError } from "../errors/AppError";
 import { prisma } from "../prisma/client";
 
 export class UpdatePacienteService {
@@ -13,11 +14,10 @@ export class UpdatePacienteService {
     });
 
     if (!paciente) {
-      throw new Error("Paciente não encontrado");
+      throw new AppError("Paciente não encontrado", 404);
     }
-
     if (paciente.cuidadorId !== userId) {
-      throw new Error("Sem permissão");
+      throw new AppError("Sem permissão", 403);
     }
 
     const atualizado = await prisma.paciente.update({

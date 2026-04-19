@@ -11,6 +11,6 @@ export class CreatePacienteController {
 
     const paciente = await service.execute(nome, idade, genero, userId);
 
-    return res.json(paciente);
+    return res.json({ data: paciente });
   }
 }

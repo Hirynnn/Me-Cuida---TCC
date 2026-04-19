@@ -12,6 +12,6 @@ export class UpdatePacienteController {
 
     const paciente = await service.execute(id, nome, idade, genero, userId);
 
-    return res.json(paciente);
+    return res.json({ data: paciente });
   }
 }

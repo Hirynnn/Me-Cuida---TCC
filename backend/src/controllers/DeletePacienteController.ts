@@ -10,6 +10,6 @@ export class DeletePacienteController {
 
     await service.execute(id, userId);
 
-    return res.json({ message: "Paciente deletado com sucesso" });
+    return res.json({ data: "Paciente deletado com sucesso" });
   }
 }
